@@ -21,22 +21,33 @@ Si no quieres leer nada más, estos cuatro archivos cubren la mayoría de los
 casos. Son la variante `inset` (San Andrés visible) al nivel `nacional`
 (el más ligero, indistinguible del original cuando se ve Colombia completa):
 
-| Qué | Formato | Tamaño | Descarga |
-|---|---|---|---|
-| 1.122 municipios | GeoJSON | 2,5 MB | [`col_municipios_inset_nacional.geojson`](output/geojson/col_municipios_inset_nacional.geojson) |
-| 1.122 municipios | TopoJSON | 0,84 MB | [`col_municipios_inset_nacional.topojson`](output/topojson/col_municipios_inset_nacional.topojson) |
-| 33 departamentos | GeoJSON | 0,40 MB | [`col_departamentos_inset_nacional.geojson`](output/geojson/col_departamentos_inset_nacional.geojson) |
-| 33 departamentos | TopoJSON | 0,12 MB | [`col_departamentos_inset_nacional.topojson`](output/topojson/col_departamentos_inset_nacional.topojson) |
+| Qué | Formato | Tamaño | Ver en GitHub | Descarga directa |
+|---|---|---|---|---|
+| 1.122 municipios | GeoJSON | 2,5 MB | [`col_municipios_inset_nacional.geojson`](output/geojson/col_municipios_inset_nacional.geojson) | [descargar](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_inset_nacional.geojson) |
+| 1.122 municipios | TopoJSON | 0,84 MB | [`col_municipios_inset_nacional.topojson`](output/topojson/col_municipios_inset_nacional.topojson) | [descargar](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_inset_nacional.topojson) |
+| 33 departamentos | GeoJSON | 0,40 MB | [`col_departamentos_inset_nacional.geojson`](output/geojson/col_departamentos_inset_nacional.geojson) | [descargar](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_inset_nacional.geojson) |
+| 33 departamentos | TopoJSON | 0,12 MB | [`col_departamentos_inset_nacional.topojson`](output/topojson/col_departamentos_inset_nacional.topojson) | [descargar](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_inset_nacional.topojson) |
 
-En GitHub, para bajar el archivo hay que entrar al enlace y pulsar **Download
-raw file**. Para enlazarlo desde código o desde una herramienta, usa la URL
-`raw`:
+Los enlaces de **descarga directa** apuntan al archivo `raw`: bajan el archivo
+sin pasar por la página de GitHub, y son los que se pegan en Power BI, en un
+`fetch` o en `geopandas.read_file()`. Estos son los cuatro, listos para copiar:
 
 ```
+https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_inset_nacional.topojson
+https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_inset_nacional.topojson
 https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_inset_nacional.geojson
+https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_inset_nacional.geojson
 ```
 
-El [catálogo completo](#cat%C3%A1logo-completo) tiene las 24 combinaciones.
+Todas las URL siguen el mismo patrón, así que puedes construir cualquiera de las
+24 cambiando formato, capa, variante y nivel:
+
+```
+https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/{formato}/col_{capa}_{variante}_{nivel}.{formato}
+```
+
+El [catálogo completo](#cat%C3%A1logo-completo) tiene las 24 combinaciones con
+su enlace de descarga.
 
 ## Cómo usarlos
 
@@ -53,7 +64,8 @@ menos que el GeoJSON equivalente, que en un informe de Power BI se nota:
 1. Añade un visual **Shape map** al lienzo.
 2. En **Formato del visual → Configuración del mapa → Tipo de mapa**, elige
    **Mapa personalizado** y carga el `.topojson`. También puedes elegir **URL**
-   y pegar el enlace `raw` de arriba, sin descargar nada.
+   y pegar el enlace `raw` de arriba —o el del
+   [catálogo completo](#cat%C3%A1logo-completo)— sin descargar nada.
 3. Arrastra tu columna de código DIVIPOLA al campo **Ubicación** y tu medida a
    **Saturación de color**.
 4. Usa **Ver clave de tipo de mapa** para comprobar que los valores de tu
@@ -232,25 +244,27 @@ Sistema de referencia: **EPSG:4326 (WGS 84)**, heredado del MGN.
 ### Catálogo completo
 
 El nombre de archivo sigue siempre el patrón
-`col_{capa}_{variante}_{nivel}.{formato}`:
+`col_{capa}_{variante}_{nivel}.{formato}`. Cada tamaño es un enlace de descarga
+directa (URL `raw`): pulsa para bajar el archivo, o copia la dirección del
+enlace para pegarla en Power BI, en un `fetch` o en `geopandas.read_file()`.
 
 | Capa | Variante | Nivel | GeoJSON | TopoJSON |
 |---|---|---|---|---|
-| departamentos | real | nacional | 0,40 MB | 0,12 MB |
-| departamentos | real | departamental | 1,65 MB | 0,47 MB |
-| departamentos | real | municipal | 5,65 MB | 1,57 MB |
-| departamentos | inset | nacional | 0,40 MB | 0,12 MB |
-| departamentos | inset | departamental | 1,63 MB | 0,48 MB |
-| departamentos | inset | municipal | 5,57 MB | 1,60 MB |
-| municipios | real | nacional | 2,50 MB | 0,84 MB |
-| municipios | real | departamental | 9,29 MB | 2,43 MB |
-| municipios | real | municipal | 31,34 MB | 7,53 MB |
-| municipios | inset | nacional | 2,49 MB | 0,85 MB |
-| municipios | inset | departamental | 9,25 MB | 2,47 MB |
-| municipios | inset | municipal | 31,22 MB | 7,60 MB |
+| departamentos | real | nacional | [0,40 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_real_nacional.geojson) | [0,12 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_real_nacional.topojson) |
+| departamentos | real | departamental | [1,65 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_real_departamental.geojson) | [0,47 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_real_departamental.topojson) |
+| departamentos | real | municipal | [5,65 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_real_municipal.geojson) | [1,57 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_real_municipal.topojson) |
+| departamentos | inset | nacional | [0,40 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_inset_nacional.geojson) | [0,12 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_inset_nacional.topojson) |
+| departamentos | inset | departamental | [1,63 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_inset_departamental.geojson) | [0,48 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_inset_departamental.topojson) |
+| departamentos | inset | municipal | [5,57 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_departamentos_inset_municipal.geojson) | [1,60 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_departamentos_inset_municipal.topojson) |
+| municipios | real | nacional | [2,50 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_real_nacional.geojson) | [0,84 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_real_nacional.topojson) |
+| municipios | real | departamental | [9,29 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_real_departamental.geojson) | [2,43 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_real_departamental.topojson) |
+| municipios | real | municipal | [31,34 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_real_municipal.geojson) | [7,53 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_real_municipal.topojson) |
+| municipios | inset | nacional | [2,49 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_inset_nacional.geojson) | [0,85 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_inset_nacional.topojson) |
+| municipios | inset | departamental | [9,25 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_inset_departamental.geojson) | [2,47 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_inset_departamental.topojson) |
+| municipios | inset | municipal | [31,22 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/geojson/col_municipios_inset_municipal.geojson) | [7,60 MB](https://raw.githubusercontent.com/ytolosa/mapas-colombia/main/output/topojson/col_municipios_inset_municipal.topojson) |
 
-Todos están en [`output/geojson/`](output/geojson/) y
-[`output/topojson/`](output/topojson/).
+Para navegarlos en GitHub en vez de descargarlos, están en
+[`output/geojson/`](output/geojson/) y [`output/topojson/`](output/topojson/).
 
 ---
 
