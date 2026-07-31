@@ -45,6 +45,14 @@ def mapshaper_args(layer: str, variant: str, levels: tuple[cfg.QualityLevel, ...
             str(cfg.GEOJSON_DIR / f"{base}.geojson"),
             "format=geojson",
             f"precision={level.precision}",
+            # `reverse-winding` deja los anillos exteriores en sentido horario, la
+            # misma orientación que mapshaper le da al TopoJSON. Sin esto los dos
+            # formatos salen con convenciones opuestas —RFC 7946 pide antihorario—
+            # y los motores de geometría esférica (d3-geo y todo lo construido
+            # encima, que es medio ecosistema de visualización) leen cada polígono
+            # como su complemento: Boyacá pasa a medir 510 millones de km² y se
+            # dibuja como un rectángulo que tapa el mapa entero.
+            "reverse-winding",
             "-o",
             str(cfg.TOPOJSON_DIR / f"{base}.topojson"),
             "format=topojson",

@@ -106,6 +106,24 @@ Un límite de Power BI que conviene tener presente: el visual Shape map dibuja
 **como máximo 1.500 regiones**. Los 1.122 municipios caben, pero sin mucho
 margen.
 
+### Orientación de los anillos
+
+En los dos formatos los anillos exteriores van en **sentido horario**, y los
+huecos en sentido antihorario. Es la convención de TopoJSON, y la que esperan
+los motores que tratan las coordenadas como puntos sobre la esfera: d3-geo y
+todo lo construido encima, que es buena parte del ecosistema de visualización.
+
+RFC 7946 pide la orientación contraria para GeoJSON, así que estos archivos no
+la siguen en ese punto. Es deliberado: con la orientación de la especificación,
+un motor esférico lee cada polígono como su complemento —el resto del planeta—
+y lo dibuja como un rectángulo relleno que tapa el mapa entero. Boyacá, en vez
+de 23.208 km², pasa a medir 510 millones.
+
+No afecta a las herramientas que trabajan en el plano —QGIS, GDAL, PostGIS,
+geopandas, Leaflet, Mapbox—, que ignoran la orientación. Si tu herramienta sí
+aplica RFC 7946 al pie de la letra (por ejemplo el tipo `geography` de SQL
+Server), invierte los anillos al cargar.
+
 ## Qué garantiza la simplificación
 
 Todos los niveles se producen con mapshaper preservando topología, con
