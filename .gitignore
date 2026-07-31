@@ -1,0 +1,16 @@
+.venv/
+node_modules/
+__pycache__/
+*.pyc
+
+# Datos de partida del DANE: no se versionan (113 MB) y hay que descargarlos del
+# geoportal. El README dice de dónde y qué archivos deben quedar aquí.
+shapefiles MGN/
+
+# Intermedios: se regeneran con `python mapas.py prepare` y pesan ~640 MB.
+build/
+
+# Previews vectoriales: pesan 78 MB en total (el SVG nacional de municipios,
+# 39 MB él solo) y los PNG bastan para comparar niveles. Se regeneran con
+# `python mapas.py render` si los necesitas para trabajo vectorial.
+output/previews/**/*.svg
